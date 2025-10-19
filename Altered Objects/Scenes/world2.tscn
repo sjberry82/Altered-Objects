@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgyhp42c6kl26"]
+
+[ext_resource type="Script" uid="uid://ch7gjuwft26yf" path="res://Scenes/background.gd" id="1_8fptb"]
+[ext_resource type="Texture2D" uid="uid://cjbiqilxls66f" path="res://back2.png" id="2_8fptb"]
+[ext_resource type="PackedScene" uid="uid://doyi2vgsr2mqc" path="res://Scenes/player.tscn" id="3_jeuw4"]
+[ext_resource type="PackedScene" uid="uid://dbx24ftop0v7m" path="res://Scenes/enemy.tscn" id="4_exon5"]
+[ext_resource type="Script" uid="uid://cqdph4yo6hta6" path="res://Scenes/end_of_level.gd" id="5_8y0xx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8j60k"]
+size = Vector2(107.5, 495.5)
+
+[node name="World2" type="Node"]
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("1_8fptb")
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+texture_filter = 1
+offset_right = 2615.3335
+offset_bottom = 320.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_8fptb")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("3_jeuw4")]
+motion_mode = 1
+speed = 200
+
+[node name="ENEMIES" type="Node" parent="."]
+
+[node name="Enemy" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(953, 266)
+
+[node name="Enemy2" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1005, 266)
+
+[node name="Enemy3" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1055, 266)
+
+[node name="Enemy4" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1275, 115)
+
+[node name="Enemy5" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1327, 115)
+
+[node name="Enemy6" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1377, 115)
+
+[node name="Enemy7" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2021, 104)
+
+[node name="Enemy8" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2073, 104)
+
+[node name="Enemy9" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2123, 104)
+
+[node name="Enemy16" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2415, 226)
+
+[node name="Enemy17" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2467, 226)
+
+[node name="Enemy18" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2517, 226)
+
+[node name="Enemy19" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(2970, 310)
+
+[node name="Enemy20" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(3022, 310)
+
+[node name="Enemy21" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(3072, 310)
+
+[node name="Enemy22" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(3491, 124)
+
+[node name="Enemy23" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(3543, 124)
+
+[node name="Enemy24" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(3593, 124)
+
+[node name="Enemy10" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1708, 269)
+
+[node name="Enemy11" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1760, 269)
+
+[node name="Enemy12" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(1810, 269)
+
+[node name="Enemy13" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(766, 107)
+
+[node name="Enemy14" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(818, 107)
+
+[node name="Enemy15" parent="ENEMIES" instance=ExtResource("4_exon5")]
+position = Vector2(868, 107)
+
+[node name="EndOfLevel" type="Area2D" parent="."]
+script = ExtResource("5_8y0xx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndOfLevel"]
+position = Vector2(3872, 230)
+shape = SubResource("RectangleShape2D_8j60k")
+
+[connection signal="body_entered" from="EndOfLevel" to="Background" method="_on_end_of_level_body_entered"]

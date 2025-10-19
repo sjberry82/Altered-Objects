@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://cly88c61ch5cu"]
+
+[ext_resource type="Script" uid="uid://b33frc6u31hvu" path="res://Scenes/projectile.gd" id="1_yr2qt"]
+[ext_resource type="Texture2D" uid="uid://deulotk7e6whl" path="res://bullet.png" id="2_yr2qt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yr2qt"]
+radius = 4.1231055
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr2qt"]
+atlas = ExtResource("2_yr2qt")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl4hk"]
+atlas = ExtResource("2_yr2qt")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4467"]
+atlas = ExtResource("2_yr2qt")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e1077"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr2qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl4hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4467")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GreenShot" type="Area2D" groups=["Projectile"]]
+script = ExtResource("1_yr2qt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yr2qt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_e1077")
+autoplay = "default"
+frame_progress = 0.4837877
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

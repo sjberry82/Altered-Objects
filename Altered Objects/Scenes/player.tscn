@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://doyi2vgsr2mqc"]
+
+[ext_resource type="Script" uid="uid://dkomo024opott" path="res://Scenes/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://sv64ybmsj11t" path="res://Ship.png" id="2_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dbrnhqb0yufqx" path="res://healthbar.png" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://5sru4k82udug" path="res://Shoot.wav" id="4_vgqql"]
+[ext_resource type="AudioStream" uid="uid://cw1002ljyws5n" path="res://hurt1.ogg" id="5_fkybt"]
+[ext_resource type="AudioStream" uid="uid://dc8is8anxxo02" path="res://pickup2.ogg" id="6_x3wgy"]
+[ext_resource type="AudioStream" uid="uid://dflq8s1jmqdfs" path="res://Funky-Gameplay_Looping.ogg" id="7_3smsa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtel"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("2_cvnsp")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkybt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgqql"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkybt"]
+bg_color = Color(0, 0.81960785, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
+radius = 18.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hqtel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fkybt")
+autoplay = "default"
+frame_progress = 0.68946177
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(315.99997, 306)
+scale = Vector2(3.1666665, 2.3333335)
+texture = ExtResource("3_6t5aa")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 169.0
+offset_top = 293.0
+offset_right = 463.0
+offset_bottom = 316.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vgqql")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fkybt")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_x3wgy")
+debug_color = Color(0.66562855, 0.506861, 0.20594472, 0.41960785)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vgqql")
+volume_db = -17.613
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fkybt")
+volume_db = -15.0
+
+[node name="PickUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_x3wgy")
+volume_db = -15.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3smsa")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1hmwclvfccte"]
+
+[ext_resource type="Texture2D" uid="uid://bav2i30crwmmw" path="res://health2.png" id="1_85oov"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85oov"]
+radius = 16.03122
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aswr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_85oov")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Health_up" type="Area2D" groups=["HealthUp"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_85oov")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_aswr4")
