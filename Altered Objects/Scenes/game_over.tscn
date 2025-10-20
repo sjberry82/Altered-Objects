@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://nfjhg3hcyr68"]
+[gd_scene load_steps=7 format=3 uid="uid://nfjhg3hcyr68"]
 
 [ext_resource type="Script" uid="uid://dmf08fupsmiuy" path="res://Scenes/game_over.gd" id="1_8fo1c"]
 [ext_resource type="FontFile" uid="uid://2xb02vwr8oo2" path="res://GiantRobots-BWZan.ttf" id="2_ek8ke"]
 [ext_resource type="Texture2D" uid="uid://dqna2fs082s2r" path="res://back3.png" id="2_eoghk"]
+[ext_resource type="AudioStream" uid="uid://bxbbxpgmwtwfy" path="res://sounds/cold-fire-neozoic-main-version-37473-02-16.mp3" id="4_eoghk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoghk"]
 bg_color = Color(0.6509804, 0, 0, 0.77254903)
@@ -109,6 +110,10 @@ theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_ek8ke")
 theme_override_font_sizes/font_size = 40
 text = "QUIT"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_eoghk")
+volume_db = -10.0
 
 [connection signal="pressed" from="Panel/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]

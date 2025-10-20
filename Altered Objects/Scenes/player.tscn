@@ -43,6 +43,7 @@ radius = 18.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_onrkg")
+speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hqtel")
@@ -94,7 +95,7 @@ volume_db = -15.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3smsa")
-volume_db = -15.0
+volume_db = -10.0
 autoplay = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

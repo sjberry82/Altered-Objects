@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://yhjm3fdcd7xs"]
+[gd_scene load_steps=6 format=3 uid="uid://yhjm3fdcd7xs"]
 
 [ext_resource type="Script" uid="uid://csgxcklxpjstn" path="res://Scenes/main_menu.gd" id="1_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://dfr4ttygb80s0" path="res://Title.png" id="2_ce3w2"]
 [ext_resource type="FontFile" uid="uid://2xb02vwr8oo2" path="res://GiantRobots-BWZan.ttf" id="3_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://dqna2fs082s2r" path="res://back3.png" id="4_ce3w2"]
+[ext_resource type="AudioStream" uid="uid://cswgc03ddbpt7" path="res://sounds/cyborg-ninja-kevin-macleod-main-version-7993-03-00.mp3" id="5_n45e2"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -69,6 +70,10 @@ offset_right = 1367.6716
 offset_bottom = 579.0
 texture = ExtResource("4_ce3w2")
 stretch_mode = 4
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_n45e2")
+volume_db = -10.0
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

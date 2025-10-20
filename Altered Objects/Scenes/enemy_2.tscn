@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhuxlxe61nt0r"]
+
+[ext_resource type="Script" uid="uid://bwbcme7rl6sdb" path="res://Scenes/enemy_2.gd" id="1_48bj6"]
+[ext_resource type="Texture2D" uid="uid://c565sgij53xr5" path="res://enemy2.png" id="2_48bj6"]
+[ext_resource type="AudioStream" uid="uid://chqo2lt8atsbd" path="res://explosion.wav" id="3_4gdgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qit8y"]
+atlas = ExtResource("2_48bj6")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gdgy"]
+atlas = ExtResource("2_48bj6")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n4gd"]
+atlas = ExtResource("2_48bj6")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1dp5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qit8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gdgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n4gd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Enemy2" type="Area2D" groups=["Enemy"]]
+scale = Vector2(4, 4)
+script = ExtResource("1_48bj6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_1dp5w")
+autoplay = "default"
+frame_progress = 0.32497403
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1.6666666, 0.5)
+polygon = PackedVector2Array(-11.666667, 0, 6.3333335, -10.5, 6.3333335, 10.5)
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4gdgy")
+volume_db = -15.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
